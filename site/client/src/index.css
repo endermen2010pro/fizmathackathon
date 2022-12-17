@@ -50,5 +50,41 @@ code {
   display: flex;
   color: #D9D9D9;
   justify-content: space-between;
-  max-width: 1300px;
+  max-width: 1600px;
+}
+
+.sun{
+  width: 66px;
+  height: 66px;
+  background-color: #FF6853;
+  border-radius: 9px;
+}
+.sun img{
+  width: 45px;
+  height: 45px;
+}
+
+
+.miniInfo{
+  display: flex;
+}
+.miniInfo h1{
+  margin: 0;
+  margin-top: -6px;
+}
+.miniInfo p{
+  margin-top: -3px;
+}
+
+.cards{
+  margin-top: 250px;
+}
+.card{
+  width: 285px;
+  height: 300px;
+  border: #FF6853 solid 1px;
+}
+.cardTitle{
+  /* margin-top:200px; */
+  text-align: center;
 }
