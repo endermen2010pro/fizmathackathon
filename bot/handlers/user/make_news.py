@@ -7,12 +7,6 @@ from aiogram.types.chat import ChatActions
 from loader import dp, db, bot
 from filters import IsUser
 
-def get_keyboard():
-    keyboard = ReplyKeyboardMarkup()
-    button = KeyboardButton("Поделиться Локацией", request_location=True)
-    keyboard.add(button)
-    return keyboard
-
 @dp.message_handler(IsUser(), text=craete_news_message, state="*")
 async def process_add_product(message: Message):
     await newsState.title.set()
@@ -84,7 +78,7 @@ async def process_image_photo(message: Message, state: FSMContext):
     fileID = message.photo[-1].file_id
     file_info = await bot.get_file(fileID)
     file_path = await file_info.get_url()
-    print(file_path)
+
     downloaded_file = (await bot.download_file(file_info.file_path)).read()
 
     async with state.proxy() as data:
@@ -113,7 +107,6 @@ async def process_location(message: Message, state: FSMContext):
     lat = message.location.latitude
     lon = message.location.longitude
 
-    print(lat,lon)
     async with state.proxy() as data:
         data['location'] = str(f'{lat},{lon}')
     title = data['title']
@@ -141,8 +134,7 @@ async def process_confirm_back(message: Message, state: FSMContext):
     await newsState.location.set()
 
     async with state.proxy() as data:
-
-            await message.answer(f"Изменить </b>Локацию?</b>?", reply_markup=get_keyboard())
+        await message.answer(f"Изменить Локацию??", reply_markup=get_keyboard())
 
 
 @dp.message_handler(IsUser(), text=all_right_message, state=newsState.confirm)
@@ -155,8 +147,6 @@ async def process_confirm(message: Message, state: FSMContext):
         image = data['image']
         location = data['location']
         imageUrl = data["imageurl"]
-
-        print(location)
 
         db.query('INSERT INTO news VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
                  (None, user_id, location, title, body, image, None, imageUrl))
