@@ -56,13 +56,20 @@ code {
 .sun{
   width: 66px;
   height: 66px;
-  background-color: #FF6853;
+  /* background-color: #FF6853; */
   border-radius: 9px;
 }
 .sun img{
   width: 45px;
   height: 45px;
 }
+.miniInfo div h1{
+  margin-left: 10px;
+}
+.miniInfo div p{
+  margin-left: 10px;
+}
+
 
 
 .miniInfo{
@@ -83,6 +90,7 @@ code {
   width: 285px;
   height: 300px;
   border: #FF6853 solid 1px;
+  border-radius: 9px;
 }
 .cardTitle{
   /* margin-top:200px; */
