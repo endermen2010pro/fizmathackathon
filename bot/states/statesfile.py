@@ -4,14 +4,14 @@ class newsState(StatesGroup):
     title = State()
     body = State()
     image = State()
-    author = State()
+    location = State()
     confirm = State()
 
-class newsEditState(StatesGroup):
-    selectId = State()
-    title = State()
-    body = State()
-    image = State()
+# class newsEditState(StatesGroup):
+#     selectId = State()
+#     title = State()
+#     body = State()
+#     image = State()
 
 class admin_viewState(StatesGroup):
     start = State()

@@ -1,11 +1,17 @@
 from aiogram.dispatcher import FSMContext
-from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, ContentType, ReplyKeyboardMarkup, ReplyKeyboardRemove
+from aiogram.types import Message, CallbackQuery,KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton, ContentType, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from aiogram.utils.callback_data import CallbackData
 from keyboards.default.markups import *
 from states import newsState
 from aiogram.types.chat import ChatActions
 from loader import dp, db, bot
 from filters import IsUser
+
+def get_keyboard():
+    keyboard = ReplyKeyboardMarkup()
+    button = KeyboardButton("Поделиться Локацией", request_location=True)
+    keyboard.add(button)
+    return keyboard
 
 @dp.message_handler(IsUser(), text=craete_news_message, state="*")
 async def process_add_product(message: Message):
@@ -55,10 +61,10 @@ async def process_body(message: Message, state: FSMContext):
     async with state.proxy() as data:
         data['body'] = message.text
 
-    if(len(message.text)<=350):
-        await message.answer(f"У вас новость длиной {len(message.text)}, для новостей у которых количество символов < 350 не будет создаваться отдельная страница.")
-    else:
-        await message.answer(f"У вас новость длиной {len(message.text)}, для вашей новости будет созданна отделльня страница.")
+    # if(len(message.text)<=350):
+    #     await message.answer(f"У вас новость длиной {len(message.text)}, для новостей у которых количество символов < 350 не будет создаваться отдельная страница.")
+    # else:
+    #     await message.answer(f"У вас новость длиной {len(message.text)}, для вашей новости будет созданна отделльня страница.")
 
     await newsState.next()
     await message.answer('Фото?', reply_markup=back_markup())
@@ -87,27 +93,29 @@ async def process_image_photo(message: Message, state: FSMContext):
 
     await newsState.next()
 
-    await message.answer('Автор?', reply_markup=back_markup())
+    await message.answer('Локация?', reply_markup=get_keyboard())
 
 @dp.message_handler(IsUser(), state=newsState.image)
 async def change_body_and_next(message: Message, state: FSMContext):
     await message.answer("ОТПРАВТЕ ФОТОГРАФИЮ!!!")
 
 
-@dp.message_handler(IsUser(), text=back_message, state=newsState.author)
-async def process_author_back(message: Message, state: FSMContext):
+@dp.message_handler(IsUser(), text=back_message, state=newsState.location)
+async def process_location_back(message: Message, state: FSMContext):
 
     await newsState.image.set()
 
     await message.answer(f"Другое фото?", reply_markup=back_markup())
 
 
-@dp.message_handler(IsUser(), state=newsState.author)
-async def process_author(message: Message, state: FSMContext):
+@dp.message_handler(IsUser(), content_types=['location'], state=newsState.location)
+async def process_location(message: Message, state: FSMContext):
+    lat = message.location.latitude
+    lon = message.location.longitude
 
+    print(lat,lon)
     async with state.proxy() as data:
-        data['author'] = message.text
-    author = data['author']
+        data['location'] = str(f'{lat},{lon}')
     title = data['title']
     body = data['body']
     image = data['image']
@@ -116,7 +124,7 @@ async def process_author(message: Message, state: FSMContext):
 
 
     markup = check_markup()
-    text = f'{title} \n{body} \n\n@{author}'
+    text = f'{title} \n{body}'
     await message.answer_photo(photo=image,
                                 reply_markup=markup)
     await message.answer(text)
@@ -130,11 +138,11 @@ async def process_confirm_invalid(message: Message, state: FSMContext):
 @dp.message_handler(IsUser(), text=back_message, state=newsState.confirm)
 async def process_confirm_back(message: Message, state: FSMContext):
 
-    await newsState.author.set()
+    await newsState.location.set()
 
     async with state.proxy() as data:
 
-            await message.answer(f"Изменить описание с <b>{data['author']}</b>?", reply_markup=back_markup())
+            await message.answer(f"Изменить </b>Локацию?</b>?", reply_markup=get_keyboard())
 
 
 @dp.message_handler(IsUser(), text=all_right_message, state=newsState.confirm)
@@ -145,11 +153,13 @@ async def process_confirm(message: Message, state: FSMContext):
         title = data['title']
         body = data['body']
         image = data['image']
-        author = data['author']
+        location = data['location']
         imageUrl = data["imageurl"]
 
+        print(location)
+
         db.query('INSERT INTO news VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-                 (None, user_id, title, body, image, author, None, imageUrl))
+                 (None, user_id, location, title, body, image, None, imageUrl))
 
     await state.finish()
     await message.answer('Готово!', reply_markup=user_defalt_markup())
