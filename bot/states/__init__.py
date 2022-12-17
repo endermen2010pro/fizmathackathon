@@ -1,1 +1,1 @@
-from .statesfile import newsState,admin_viewState,newsEditState
+from .statesfile import newsState,admin_viewState

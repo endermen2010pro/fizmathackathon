@@ -10,7 +10,7 @@ class DatabaseManager(object):
         self.cur = self.conn.cursor()
 
     def create_tables(self):
-        self.query('CREATE TABLE IF NOT EXISTS news (idx integer primary key, iduser integer, title text, body text, photo blob, author text, ischecked boolean, imageurl text)')
+        self.query('CREATE TABLE IF NOT EXISTS news (idx integer primary key, iduser integer,location text, title text, body text, photo blob, ischecked boolean, imageurl text)')
         
     def query(self, arg, values=None):
         if values == None:
