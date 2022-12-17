@@ -38,15 +38,6 @@ app.use(express.json());
 app.use(cors());
 
 
-//Регистрация с токеном
-app.post('/auth/registration', async (req, res)=>{
-    try{
-        
-    }catch(err){
-        res.json({message:"error on registration"})
-    }
-})
-
 app.use(express.json())
 app.listen(PORT,(err)=>{
     if(err){
