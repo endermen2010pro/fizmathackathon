@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #071341;
 }
 
 code {
@@ -13,7 +14,41 @@ code {
 }
 
 
-.companyName{
+.header{
+  margin: auto;
+  align-items: center;
   text-align: center;
-  
+  /* height: 600px; */
+  font-size: 52px;
+  max-width: 900px;
+  color:#D9D9D9;
+}
+
+.headerLine{
+  margin-top: -130px;
+}
+.paragraphHeader{
+  margin-top: -30px;
+}
+
+.firstBlock{
+  display: flex;
+  height: 1000px; /* Change margin top in header here */
+  align-items: center;
+}
+
+.info{
+  margin: auto;
+  display: flex;
+  color: #D9D9D9;
+  justify-content: space-between;
+  max-width: 1300px;
+}
+
+.navBlock{
+  margin: auto;
+  display: flex;
+  color: #D9D9D9;
+  justify-content: space-between;
+  max-width: 1300px;
 }
