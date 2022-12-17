@@ -18,7 +18,15 @@ def getWind(url):
     r = requests.get(url, headers=HEADERS)
     soup = BeautifulSoup(r.text, 'lxml')
     wind = soup.findAll('div', class_="wtpo")
-    return (wind[1].findAll('b')[2].text, wind[1].findAll('b')[6].text, wind[1].findAll('b')[1].text)
+    windAll = wind[1].findAll('b')
+    Humidity = ' '
+    for i in wind[1].findAll('b'):
+        print(i.text)
+        if (('%' == i.text[-1])):
+            Humidity = i.text
+            print(1)
+            break
+    return (windAll[2].text, Humidity, windAll[1].text)
 
 def getLinks():
     soup = BeautifulSoup(data, 'lxml')
@@ -35,6 +43,7 @@ def getLinks():
 totalCityes, totalLinks = getLinks()
 totalWeather = {}
 k = 0
+# print(getWind("https://ru.meteotrend.com/forecast/in/amritsar/"))
 for i in range(len(totalLinks)):
     print(totalCityes[i])
     Temp = getWind(totalLinks[i])
@@ -50,11 +59,11 @@ for i in range(len(totalLinks)):
             WindDirecroty += 'S'
 
     totalWeather.update({totalCityes[i]: {"Temp":getTemp(totalLinks[i])[0:-3],
-                                          "WindSpeed":Temp[0],
-                                          "WindDirectory":WindDirecroty,
-                                          "Humidity":Temp[1]}})
+                                            "WindSpeed":Temp[0],
+                                            "WindDirectory":WindDirecroty,
+                                            "Humidity":Temp[1]}})
     k += 1
-    if k == 10:
+    if k == 1000:
         print(totalWeather)
         break
 

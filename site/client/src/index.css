@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #071341;
 }
 
 code {
@@ -13,7 +14,85 @@ code {
 }
 
 
-.companyName{
+.header{
+  margin: auto;
+  align-items: center;
   text-align: center;
-  
+  /* height: 600px; */
+  font-size: 52px;
+  max-width: 900px;
+  color:#D9D9D9;
+}
+
+.headerLine{
+  margin-top: -130px;
+}
+.paragraphHeader{
+  margin-top: -30px;
+}
+
+.firstBlock{
+  display: flex;
+  height: 1000px; /* Change margin top in header here */
+  align-items: center;
+}
+
+.info{
+  margin: auto;
+  display: flex;
+  color: #D9D9D9;
+  justify-content: space-between;
+  max-width: 1300px;
+}
+
+.navBlock{
+  margin: auto;
+  display: flex;
+  color: #D9D9D9;
+  justify-content: space-between;
+  max-width: 1600px;
+}
+
+.sun{
+  width: 66px;
+  height: 66px;
+  /* background-color: #FF6853; */
+  border-radius: 9px;
+}
+.sun img{
+  width: 45px;
+  height: 45px;
+}
+.miniInfo div h1{
+  margin-left: 10px;
+}
+.miniInfo div p{
+  margin-left: 10px;
+}
+
+
+
+.miniInfo{
+  display: flex;
+}
+.miniInfo h1{
+  margin: 0;
+  margin-top: -6px;
+}
+.miniInfo p{
+  margin-top: -3px;
+}
+
+.cards{
+  margin-top: 250px;
+}
+.card{
+  width: 285px;
+  height: 300px;
+  border: #FF6853 solid 1px;
+  border-radius: 9px;
+}
+.cardTitle{
+  /* margin-top:200px; */
+  text-align: center;
 }
