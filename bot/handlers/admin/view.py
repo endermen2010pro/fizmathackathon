@@ -84,10 +84,14 @@ async def accept_news(message: Message, state: FSMContext):
         return
     accepted = db.fetchall('SELECT * FROM news ORDER BY ROWID')
     # data = supabase.table("trend").insert({"title":orders[0][2],"body":orders[0][3],"author":orders[0][5],"fileurl":orders[0][7],'clickable':isclikbl}).execute()
-    datatofb = {}
+    # datatofb = {}
+    # for i in accepted:
+    #     datatofb[i[0]] = {"title":i[3],"location":i[2],'body':i[4],'image':i[7],'isAccepted':"false"}
+
+    datatofb = []
     for i in accepted:
-        datatofb[i[3]] = {"loaction":i[2],'body':i[4],'image':i[7],'isAccepted':"false"}
-    json_data_to_fb = json.dumps(datatofb)
+        datatofb.append({"title":i[3],"location":i[2],'body':i[4],'image':i[7],'isAccepted':"false"})
+    json_data_to_fb = json.dumps({"reports":datatofb})
     ref.set(json_data_to_fb)
     db.query(f"UPDATE news SET ischecked = 1 WHERE idx = {id}")
     news = get_next_news()

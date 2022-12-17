@@ -50,11 +50,11 @@ for i in range(len(totalLinks)):
             WindDirecroty += 'S'
 
     totalWeather.update({totalCityes[i]: {"Temp":getTemp(totalLinks[i])[0:-3],
-                                          "WindSpeed":Temp[0],
-                                          "WindDirectory":WindDirecroty,
-                                          "Humidity":Temp[1]}})
+                                            "WindSpeed":Temp[0],
+                                            "WindDirectory":WindDirecroty,
+                                            "Humidity":Temp[1]}})
     k += 1
-    if k == 10:
+    if k == 1000:
         print(totalWeather)
         break
 
