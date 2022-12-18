@@ -11,7 +11,6 @@ function App() {
       <Routes>
         
         <Route path="/" element={<HomePage />}/>
-        <Route path='map' element={<MapPage />}/>
         <Route path='*' element={<NotFoundPage />}/>
         
       </Routes>
