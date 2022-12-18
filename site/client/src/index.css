@@ -63,6 +63,9 @@ code {
   width: 45px;
   height: 45px;
 }
+.miniInfo{
+  width: 250px;
+}
 .miniInfo div h1{
   margin-left: 10px;
 }

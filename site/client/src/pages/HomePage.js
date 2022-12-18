@@ -64,20 +64,20 @@ const HomePage = () => {
                 <div className='header'>
                     <h1> lgnis </h1>
                     <img src={line} alt="" className='headerLine'/>
-                    <p className='paragraphHeader'>Description and other things. I don’t know what should be there. Just some text without any meaning.</p>
+                    <p className='paragraphHeader'>Project that was created to prevent fires and pollution of nature</p>
                 </div>
             </div>
             <div className='SecondBlock'>
                 <div className='info'>
         
-                    <Miniinfo title="3400" body="Projects" color="#FF6853" />
+                    <Miniinfo title="760" body="Projects" color="#FF6853" />
                     <Miniinfo title="240+" body="людей спасено" color="#FF537C" />
-                    <Miniinfo title="240+" body="пожаров потушено" color="#80D2C4" />
-                    <Miniinfo title="240+" body="спасено деревеьев" color="#3F50E7" />
-                    <Miniinfo title="240+" body="пожаров обнуаружено" color="#95CB7C" />
+                    <Miniinfo title="140+" body="пожаров потушено" color="#80D2C4" />
+                    <Miniinfo title="3400+" body="спасено деревеьев" color="#3F50E7" />
+                    <Miniinfo title="210+" body="пожаров обнуаружено" color="#95CB7C" />
                 </div>
                 <div className='cards'>
-                    <h1 style={{"textAlign":"center", "color":"#D9D9D9", "marginBottom":"100px", "marginTop":"150px"}}>Opportunities</h1>
+                    <h1 style={{"textAlign":"center", "color":"#D9D9D9", "marginBottom":"100px", "marginTop":"150px"}}>Functions:</h1>
                     <div className='navBlock'>
                         {/* <MyCard title="Map"/>
                         <MyCard title="Map"/>
