@@ -83,10 +83,12 @@ const HomePage = () => {
                         <MyCard title="Map"/>
                         <MyCard title="Map"/>
                         <MyCard title="Map"/> */}
-                        <article className="card">
-                            <CardHeader image={'https://source.unsplash.com/user/erondu/600x400'}/>
-                            <CardBody title={'Map'} text={'На данной карте вы можеет увидеть предсказуемые пожары'}/>
-                        </article>
+                          <article className="card">
+                            <a href='http://localhost:3000/'>
+                              <CardHeader image={'https://source.unsplash.com/user/erondu/600x400'}/>
+                              <CardBody title={'Map'} text={'На этом сайте ты можешь посмотреть полную статистику'}/>
+                              </a>
+                          </article>
                         <article className="card">
                             <CardHeader image={'https://source.unsplash.com/user/erondu/600x400'}/>
                             <CardBody title={'Map'} text={'На данной карте вы можеет увидеть предсказуемые пожары'}/>
@@ -97,9 +99,6 @@ const HomePage = () => {
                         </article>
                     </div>
                 </div>
-                
-                <h1>sadasd</h1>
-                
             </div>
         </div>
         
