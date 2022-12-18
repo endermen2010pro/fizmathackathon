@@ -44,4 +44,9 @@ class MainActivity : AppCompatActivity() {
         trans.replace(R.id.fragment_container, fragment)
         trans.commit()
     }
+
+    fun switchToChatFragment(){
+        loadFragment(chatsFragment)
+        bottomNav.selectedItemId = R.id.bottom_nav_chats
+    }
 }

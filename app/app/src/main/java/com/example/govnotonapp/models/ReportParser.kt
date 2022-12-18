@@ -15,6 +15,31 @@ class ReportParser(ctx: Context) {
     Create a parsing method to parse data from firebase to string to JSON
      */
     // var obj: JSONArray = JSONArray(str)
+    fun parse(string: String): ArrayList<Report> {
+        try {
+            var reportArrayList = ArrayList<Report>()
+            var reports: JSONObject = JSONObject(string)
+            var reportsArray: JSONArray = reports.getJSONArray("reports")
+            for(i in 1 until reportsArray.length()){
+                var obj = reportsArray.get(i) as JSONObject
+                var title = obj.getString("title") // получаю тайтл как строку
+                var location = obj.getString("location")
+                var body = obj.getString("body")
+                var image = obj.getString("image")
+                var isAccepted = obj.getBoolean("isAccepted")
+                var report: Report = Report(title,location,body,image,isAccepted)
+                reportArrayList.add(report)
+                // Toast.makeText(ctx, title, Toast.LENGTH_SHORT).show()
+            }
+            return reportArrayList
+        } catch (e: java.lang.Exception) {
+            Toast.makeText(ctx, "Unexpected error", Toast.LENGTH_SHORT).show()
+            e.printStackTrace()
+            var reportArrayList = ArrayList<Report>() // empty
+            return reportArrayList
+        }
+    }
+
     fun parse(): ArrayList<Report> {
         try {
             var reportArrayList = ArrayList<Report>()
